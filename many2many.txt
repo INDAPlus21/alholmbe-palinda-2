@@ -1,0 +1,14 @@
+1. What happens if you switch the order of the statements wgp.Wait() and close(ch) in the end of the main function?
+- program doesn't work because we are trying to send values to a closed channel
+
+2. What happens if you move the close(ch) from the main function and instead close the channel in the end of the function Produce?
+- same as #1 but we are going to get it after a while instead of instantly.
+
+3. What happens if you remove the statement close(ch) completely?
+- Program works as expected, I suspect that Go handles the closing of the channel in the background. 
+
+What happens if you increase the number of consumers from 2 to 4?
+- We get a performance improvement, since we are doing more stuff concurrently.
+
+Can you be sure that all strings are printed before the program stops?
+- nope, since we are only waiting for the producers to finish. Need to wait for the consumers aswell to be sure.
